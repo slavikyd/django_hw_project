@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Subtype: </h1>
+
+    {% if subtype %}
+    <ul>
+
+      <li>
+        <a>{{ subtype.name }}</a> ({{subtype.description}})
+      </li>
+    </ul>
+
+    {% else %}
+      <p>Subtype not found..</p>
+    {% endif %}
+{% endblock %}

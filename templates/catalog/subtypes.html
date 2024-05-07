@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Subtypes</h1>
+
+    {% if subtypes_list %}
+    <ul>
+
+      {% for stype in subtypes_list %}
+      <li>
+        <a href="{% url 'subtype'%}?id={{stype.id}}">{{ styoe.name }}</a> 
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>There are no subtypes for now..</p>
+    {% endif %}
+{% endblock %}

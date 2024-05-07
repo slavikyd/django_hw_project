@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Manufacturer: </h1>
+
+    {% if manufacturer %}
+    <ul>
+
+      <li>
+        <a>{{ manufacturer.title }}</a>
+      </li>
+    </ul>
+
+    {% else %}
+      <p>Manufacturer not found..</p>
+    {% endif %}
+{% endblock %}

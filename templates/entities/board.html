@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Board: </h1>
+
+    {% if board %}
+    <ul>
+
+      <li>
+        <a>Title: {{ board.title }}</a><br>
+        <a>Description: {{ board.description }}</a><br>
+        <a>Year: {{ board.year }}</a><br>
+      </li>
+    </ul>
+
+    {% else %}
+      <p>Board not found..</p>
+    {% endif %}
+
+{% endblock %}

@@ -1,7 +1,11 @@
+from . import choices
 from django.db import models
 from uuid import uuid4
 from datetime import datetime, date, timezone
 from django.core.exceptions import ValidationError
+from django.conf.global_settings import AUTH_USER_MODEL
+from django_currentuser.middleware import (
+get_current_user, get_current_authenticated_user)
 
 
 def get_datetime():
@@ -78,11 +82,11 @@ class Board(UUIDMixin, CreatedMixin, ModifiedMixin):
 
 class BoardBoard(UUIDMixin, CreatedMixin):
     connection_choices = {
-        'USB/UART': 'USB with UART support',
-        'USB/COM': 'USB with COM support',
-        'USB': 'plain USB',
-        'USB-C:USB-A': 'USB-C to USB-A connection',
-        'USB-Micro:USB-A': 'Micro USB to USB-A connection', 
+        choices.UU: 'USB with UART support',
+        choices.UC: 'USB with COM support',
+        choices.U: 'plain USB',
+        choices.U_C_U_A: 'USB-C to USB-A connection',
+        choices.U_MC_U_A: 'Micro USB to USB-A connection', 
     }
     theboard = models.ForeignKey(Board, on_delete=models.CASCADE)
     compatibleboard = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='compatible_type_board')
@@ -108,3 +112,21 @@ class BoardManufacturer(UUIDMixin, CreatedMixin):
             ('board', 'manufacturer'),
         )
 
+
+class Client(UUIDMixin, CreatedMixin, ModifiedMixin):
+    user = models.OneToOneField(AUTH_USER_MODEL, verbose_name=('user'), on_delete=models.CASCADE)
+    boards = models.ManyToManyField(Board, through='BoardClient', verbose_name=('boards'))
+
+    class Meta:
+        db_table = '"databank"."client"'
+        verbose_name = ('client')
+        verbose_name_plural = ('clients')
+
+class BoardClient(UUIDMixin, CreatedMixin):
+    board = models.ForeignKey(Board, on_delete=models.CASCADE, verbose_name=('board'))
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name=('client'))
+
+    class Meta:
+        db_table = '"databank"."board_client"'
+        verbose_name = ('relationship board client')
+        verbose_name_plural = ('relationships boards client')

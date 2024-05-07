@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Boards</h1>
+
+    {% if boards_list %}
+    <ul>
+
+      {% for board in boards_list %}
+      <li>
+        <a href="{% url 'board'%}?id={{board.id}}">{{ board.title }}</a> {{board.type}} {{board.year}} {{board.subtypes}}
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>There are no boards for now..</p>
+    {% endif %}
+{% endblock %}

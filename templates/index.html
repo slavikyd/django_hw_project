@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>Dot.</h1>
+
+  <p>Welcome to <em>DOT. v0.1</em>, huge databank (supposedly) of different boards and modules for DIY and electronics</p>
+
+<h2>Dynamic content</h2>
+
+  <p>Our databank has the following record counts:</p>
+  <ul>
+    <li><strong>Boards:</strong> {{ boards }}</li>
+    <li><strong>Subtypes:</strong> {{ subtypes }}</li>
+    <li><strong>Manufacturers:</strong> {{ manufacturers }}</li>
+  </ul>
+
+{% endblock %}

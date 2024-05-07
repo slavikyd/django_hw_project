@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    {% if client_data %}
+        <h5>Your profile data:</h5>
+        <ul>
+            {% for key, value in client_data.items %}
+                <li> {{key}}: {{value}} </li>
+            {% endfor %}
+        </ul>
+        {% if client_boards %}
+            <h4>Your boards:</h4>
+            <ul>
+                {% for board in client_boards %}
+                    <li> <a href="{% url 'board' %}?id={{ board.id }}"> {{ board.title }}</a> </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h4>You have not purchased any boards yet.</h4>
+        {% endif %}
+
+    {% else %}
+        <p>No client data to show..</p>
+    {% endif %}
+
+    
+{% endblock %}
