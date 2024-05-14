@@ -1,4 +1,4 @@
-from . import choices
+import choices
 from django.db import models
 from uuid import uuid4
 from datetime import datetime, date, timezone
