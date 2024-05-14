@@ -58,6 +58,19 @@ REST_FRAMEWORK = {
    ),
 }
 
+SWAGGER_SETTINGS = {
+   'SECURITY_DEFINITIONS': {
+      'Basic': {
+            'type': 'basic'
+      },
+      'Token': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+      }
+   }
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -88,6 +101,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dot.wsgi.application'
 
+TEST_RUNNER = 'tests.runner.PostgresSchemaRunner'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -100,12 +114,14 @@ DATABASES = {
         'PASSWORD': getenv('PG_PASSWORD'),
         'HOST': getenv('PG_HOST'),
         'PORT': getenv('PG_PORT'),
-        'OPTIONS': {'options': '-c search_path=public,library'},
+        'OPTIONS': {'options': '-c search_path=public,databank'},
         'TEST': {
             'NAME': 'test_db',
         },
     },
 }
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

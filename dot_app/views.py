@@ -2,16 +2,18 @@ from typing import Any
 from django.shortcuts import render
 from django.views.generic import ListView
 from django.core.paginator import Paginator
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import BasePermission
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
 from rest_framework import status
 
+
 from .models import Board, Subtype, Manufacturer, Client
 from .forms import TestForm, Registration
 from .serializers import BoardSerializer, SubtypeSerializer, ManufacturerSerializer
-
 
 def home_page(request):
     return render(
@@ -104,6 +106,25 @@ def create_viewset(model_class, serializer):
 
     return CustomViewSet
 
+def profile(request):
+    client = Client.objects.get(user=request.user)
+    client_attrs = ('username', 'first_name', 'last_name', 'money')
+    client_data = {attr: getattr(client, attr) for attr in client_attrs}
+    form_errors = ''
+    return render(
+        request,
+        'pages/profile.html',
+        {
+            'client_data': client_data,
+            'form_errors': form_errors,
+            'client_boards': client.boards.all(),
+        },
+    )
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return render(request, 'registration/logged_out.html', {})
 
 Board_ListView = create_list_view(Board, 'boards', 'catalog/boards.html')
 Subtype_ListView = create_list_view(Subtype, 'subtypes', 'catalog/subtypes.html')

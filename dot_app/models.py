@@ -4,8 +4,8 @@ from uuid import uuid4
 from datetime import datetime, date, timezone
 from django.core.exceptions import ValidationError
 from django.conf.global_settings import AUTH_USER_MODEL
-from django_currentuser.middleware import (
-get_current_user, get_current_authenticated_user)
+# from django_currentuser.middleware import (
+# get_current_user, get_current_authenticated_user)
 
 
 def get_datetime():
@@ -68,8 +68,8 @@ class Subtype(UUIDMixin, CreatedMixin, ModifiedMixin):
 class Board(UUIDMixin, CreatedMixin, ModifiedMixin):
     title = models.TextField(null=False, blank=False)
     description = models.TextField(null=True, blank=True)
-    type = models.TextField(null=True, blank=True)
-    year = models.IntegerField(null=True, blank=True, validators=[check_year,])
+    type = models.TextField(null=True, blank=True, default='Undefined')
+    year = models.IntegerField(null=True, blank=True, validators=[check_year,], default=date.today().year)
     
     subtypes = models.ManyToManyField(Subtype, through='BoardSubtype')
     manufacturers = models.ManyToManyField(Manufacturer, through='BoardManufacturer')
