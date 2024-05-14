@@ -86,7 +86,7 @@ class BoardBoard(UUIDMixin, CreatedMixin):
         choices.UC: 'USB with COM support',
         choices.U: 'plain USB',
         choices.U_C_U_A: 'USB-C to USB-A connection',
-        choices.U_MC_U_A: 'Micro USB to USB-A connection', 
+        choices.U_MC_U_A: 'Micro USB to USB-A connection'
     }
     theboard = models.ForeignKey(Board, on_delete=models.CASCADE)
     compatibleboard = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='compatible_type_board')
