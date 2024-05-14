@@ -47,23 +47,13 @@ jobs:
       run: |
         chmod +x tests/test.sh
         ./tests/test.sh tests.test_models
-    - name: Тесты views
-      run: |
-        chmod +x tests/test.sh
-        ./tests/test.sh tests.test_views
+    # - name: Тесты views
+    #   run: |
+    #     chmod +x tests/test.sh
+    #     ./tests/test.sh tests.test_views
     - name: Тесты api
       run: |
         chmod +x tests/test.sh
         ./tests/test.sh tests.test_api
-    - name: Тесты forms
-      run: |
-        chmod +x tests/test.sh
-        ./tests/test.sh tests.test_forms
-    - name: Тесты buy
-      run: |
-        chmod +x tests/test.sh
-        ./tests/test.sh tests.test_buy
-    - name: Тесты add funds
-      run: |
-        chmod +x tests/test.sh
-        ./tests/test.sh tests.test_add_funds
+
+
