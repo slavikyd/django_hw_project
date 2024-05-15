@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 
 from dot_app.models import Board, Manufacturer, Subtype
-import data
+from . import data
 URL = '/api/'
 
 
