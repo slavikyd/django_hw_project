@@ -32,13 +32,13 @@ class UUIDMixin(models.Model):
         abstract = True
 
 class CreatedMixin(models.Model):
-    created = models.DateTimeField(null=True, blank=True, default=datetime.now, validators=[check_created,])
+    created = models.DateTimeField(null=True, blank=True, default=get_datetime, validators=[check_created,])
 
     class Meta:
         abstract = True
 
 class ModifiedMixin(models.Model):
-    modified = models.DateTimeField(null=True, blank=True, default=datetime.now, validators=[check_modified,])
+    modified = models.DateTimeField(null=True, blank=True, default=get_datetime, validators=[check_modified,])
 
     class Meta:
         abstract = True
@@ -81,13 +81,13 @@ class Board(UUIDMixin, CreatedMixin, ModifiedMixin):
         db_table = '"databank"."Board"'
 
 class BoardBoard(UUIDMixin, CreatedMixin):
-    connection_choices = {
-        choices.UU: 'USB with UART support',
-        choices.UC: 'USB with COM support',
-        choices.U: 'plain USB',
-        choices.U_C_U_A: 'USB-C to USB-A connection',
-        choices.U_MC_U_A: 'Micro USB to USB-A connection'
-    }
+    connection_choices = (
+        (choices.UU, 'USB with UART support'),
+        (choices.UC, 'USB with COM support'),
+        (choices.U, 'plain USB'),
+        (choices.U_C_U_A, 'USB-C to USB-A connection'),
+        (choices.U_MC_U_A, 'Micro USB to USB-A connection'),
+    )
     theboard = models.ForeignKey(Board, on_delete=models.CASCADE)
     compatibleboard = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='compatible_type_board')
     connections = models.TextField(null=False, blank=False, default='USB/COM', choices=connection_choices)
