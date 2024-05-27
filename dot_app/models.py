@@ -6,7 +6,10 @@ from django.core.exceptions import ValidationError
 from django.conf.global_settings import AUTH_USER_MODEL
 # from django_currentuser.middleware import (
 # get_current_user, get_current_authenticated_user)
+from django_minio_backend import MinioBackend, iso_date_prefix
+from .models_funcs import create_manager, create_save
 
+    
 
 def get_datetime():
     return datetime.now(timezone.utc)
@@ -53,6 +56,7 @@ class Manufacturer(UUIDMixin, CreatedMixin, ModifiedMixin):
 
     class Meta:
         db_table = '"databank"."Manufacturer"'
+        ordering = ['-id']
 
 class Subtype(UUIDMixin, CreatedMixin, ModifiedMixin):
     name = models.TextField(null=False, blank=False)
@@ -63,6 +67,7 @@ class Subtype(UUIDMixin, CreatedMixin, ModifiedMixin):
 
     class Meta:
         db_table = '"databank"."subtype"'
+        ordering = ['-id']
 
 
 class Board(UUIDMixin, CreatedMixin, ModifiedMixin):
@@ -70,15 +75,26 @@ class Board(UUIDMixin, CreatedMixin, ModifiedMixin):
     description = models.TextField(null=True, blank=True)
     type = models.TextField(null=True, blank=True, default='Undefined')
     year = models.IntegerField(null=True, blank=True, validators=[check_year,], default=date.today().year)
-    
+    datasheet = models.FileField(
+        null=True, blank=True, 
+        storage=MinioBackend(bucket_name='static'),
+        upload_to=iso_date_prefix,
+    )
+    image = models.FileField(
+        null=True, blank=True, 
+        storage=MinioBackend(bucket_name='static'),
+        upload_to=iso_date_prefix,
+    )
     subtypes = models.ManyToManyField(Subtype, through='BoardSubtype')
     manufacturers = models.ManyToManyField(Manufacturer, through='BoardManufacturer')
 
     def __str__(self) -> str:
         return f'{self.title}, {self.year}, {self.type} pages'
 
+
     class Meta:
         db_table = '"databank"."Board"'
+        ordering = ['-id']
 
 class BoardBoard(UUIDMixin, CreatedMixin):
     connection_choices = (
@@ -112,15 +128,36 @@ class BoardManufacturer(UUIDMixin, CreatedMixin):
             ('board', 'manufacturer'),
         )
 
+client_validators = (
+    ('created', check_created), ('modified', check_modified),
+)
 
 class Client(UUIDMixin, CreatedMixin, ModifiedMixin):
-    user = models.OneToOneField(AUTH_USER_MODEL, verbose_name=('user'), on_delete=models.CASCADE)
+
+    user = models.OneToOneField(AUTH_USER_MODEL, unique=True, verbose_name=('user'), on_delete=models.CASCADE)
     boards = models.ManyToManyField(Board, through='BoardClient', verbose_name=('boards'))
+    objects = create_manager(client_validators)
+    save = create_save(client_validators)
 
     class Meta:
         db_table = '"databank"."client"'
         verbose_name = ('client')
         verbose_name_plural = ('clients')
+
+    @property
+    def username(self) -> str:
+        return self.user.username
+
+    @property
+    def first_name(self) -> str:
+        return self.user.first_name
+    
+    @property
+    def last_name(self) -> str:
+        return self.user.last_name
+    
+    def __str__(self) -> str:
+        return f'{self.username} ({self.first_name} {self.last_name})'
 
 class BoardClient(UUIDMixin, CreatedMixin):
     board = models.ForeignKey(Board, on_delete=models.CASCADE, verbose_name=('board'))

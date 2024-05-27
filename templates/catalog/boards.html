@@ -1,6 +1,22 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+<style>
+  
+  a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: rgba(255, 0, 0, 0.541);
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  </style>
+{% load static %}
+  <link rel="stylesheet" href="../static/chasis.css" />
     <h1>Boards</h1>
 
     {% if boards_list %}

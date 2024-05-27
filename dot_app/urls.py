@@ -3,10 +3,10 @@ from . import views
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import BoardViewSet, SubtypeViewSet, ManufacturerViewSet
-from django.urls import re_path
-from rest_framework import permissions, authentication
+from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 router = DefaultRouter()
 router.register(r'boards', BoardViewSet)
@@ -32,7 +32,7 @@ urlpatterns = [
     path('api/', include(router.urls), name='api'),
     path('api-auth/', include('rest_framework.urls'), name='rest_framework'),
     path('boards/', views.Board_ListView.as_view(), name='boards'),
-    path('book/', views.board_view, name='board'),
+    path('board/', views.board_view, name='board'),
     path('manufacturers/', views.Manufacturer_ListView.as_view(), name='manufacturers'),
     path('manufacturer/', views.manufacturer_view, name='manufacturer'),
     path('register/', views.register, name='register'),
@@ -42,4 +42,7 @@ urlpatterns = [
     path('dot_swagger/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    path('404/', views.not_found_page, name='404_page'),
+    path('profile/', views.profile, name='profile')
 ]
+urlpatterns += staticfiles_urlpatterns()

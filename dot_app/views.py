@@ -1,7 +1,8 @@
 from typing import Any
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.core.paginator import Paginator
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from rest_framework.viewsets import ModelViewSet
@@ -26,6 +27,9 @@ def home_page(request):
         }
     )
 
+def not_found_page(request):
+    return render(request, '404.html')
+
 def create_list_view(model_class, plural_name, template):
     class ModelListView(ListView):
         model = model_class
@@ -48,10 +52,16 @@ Manufacturer_ListView = create_list_view(Manufacturer, 'manufacturers', 'catalog
 Subtype_ListView = create_list_view(Subtype, 'subtypes', 'catalog/subtypes.html')
 
 def create_view(model_class, context_name, template):
+    @login_required
     def view(request):
         id_ = request.GET.get('id', None)
         target = model_class.objects.get(id=id_) if id_ else None
-        return render(request, template, {context_name: target})
+        context = {context_name: target}
+        return render(
+            request,
+            template,
+            context,
+        )
     return view
 
 
@@ -106,20 +116,47 @@ def create_viewset(model_class, serializer):
 
     return CustomViewSet
 
+@login_required
 def profile(request):
     client = Client.objects.get(user=request.user)
-    client_attrs = ('username', 'first_name', 'last_name', 'money')
+
+    
+    client_attrs = 'username', 'first_name', 'last_name'
     client_data = {attr: getattr(client, attr) for attr in client_attrs}
-    form_errors = ''
     return render(
         request,
         'pages/profile.html',
         {
             'client_data': client_data,
-            'form_errors': form_errors,
             'client_boards': client.boards.all(),
-        },
+        }
     )
+
+@login_required
+def bookmark(request):
+    client = Client.objects.get(user=request.user)
+    id_ = request.GET.get('id', None)
+    if not id_:
+        return redirect('boards')
+    try:
+        board = Board.objects.get(id=id_)
+    except (ValidationError, ObjectDoesNotExist):
+        return redirect('boards')
+    if not board:
+        return redirect('boards')
+    if board in client.boards.all():
+        return redirect('profile')
+
+
+
+    return render(
+        request,
+        'pages/bookmark.html',
+        {
+            'board': board,
+        }
+    )
+
 
 @login_required
 def user_logout(request):

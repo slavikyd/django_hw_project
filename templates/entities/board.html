@@ -1,20 +1,51 @@
-{% extends "base_generic.html" %}
-
+{% extends "base_generic.html" %}  
 {% block content %}
+<style>
+  
+  a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: rgba(255, 0, 0, 0.541);
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  </style>
+
     <h1>Board: </h1>
 
     {% if board %}
     <ul>
 
-      <li>
+      
         <a>Title: {{ board.title }}</a><br>
         <a>Description: {{ board.description }}</a><br>
         <a>Year: {{ board.year }}</a><br>
+        <br>
+        <br>
+        <br>
+        <img src="http://localhost:9000/static/images/{{board.image}}" width=25% height=25%>
+    </ul><ul>
+      <br>
+      <br>
+      <br>  
+        <embed src="http://localhost:9000/static/{{board.datasheet}}" width=200% height="500px"/>
+
       </li>
     </ul>
 
     {% else %}
       <p>Board not found..</p>
     {% endif %}
-
+<div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
 {% endblock %}

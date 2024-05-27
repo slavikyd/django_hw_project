@@ -47,10 +47,10 @@ jobs:
       run: |
         chmod +x tests/test.sh
         ./tests/test.sh tests.test_models
-    # - name: Тесты views
-    #   run: |
-    #     chmod +x tests/test.sh
-    #     ./tests/test.sh tests.test_views
+    - name: Тесты views
+      run: |
+        chmod +x tests/test.sh
+        ./tests/test.sh tests.test_views
     - name: Тесты api
       run: |
         chmod +x tests/test.sh

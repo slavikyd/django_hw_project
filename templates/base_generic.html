@@ -1,47 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  {% block title %}<title>Big databank of boards for electronics and DIY</title>{% endblock %}
-</head>
+  <head>
+    <title>Dot.</title>
+    <meta property="og:title" content="Slim Foolhardy Rat" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
 
-<body>
-  {% block sidebar %}
-  <ul class="sidebar-nav">
-      <li><a href="{% url 'homepage' %}">Homepage</a></li>
-    {% if user.is_authenticated %}
-      
-      <li><a href="{% url 'boards' %}">Boards</a></li>
-      <li><a href="{% url 'subtypes' %}">Subtypes</a></li>
-      <li><a href="{% url 'manufacturers' %}">Manufacturers</a></li>
-      <form method="POST" action="{% url 'logout' %}?next={{request.path}}">
-        {% csrf_token %}
-        <input type="submit" value="Logout">
-      </form>
-    {% else %}
-        <li><a href="{% url 'register' %}?next={{request.path}}">Sign up</a></li>
-        <li><a href="{% url 'login' %}?next={{request.path}}">Log in</a></li>
-    {% endif %}
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Noto Sans;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-theme-neutral-dark);
+        background-color: var(--dl-color-theme-neutral-light);
+
+        fill: var(--dl-color-theme-neutral-dark);
+      }
+    </style>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/animate.css@4.1.1/animate.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
+    />
+  </head>
+  <body>
+  <div class="sidebar-nav">
+    
   </ul>
-  {% endblock %}
-  {% block content %}{% endblock %}
-  {% if is_paginated %}
-  <div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
-  
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-  
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-  </div>
-  {% endif %}
-</body>
+</div>
+    {% block super %}
+    {% load static %}
+    <link rel="stylesheet" href="../../static/style.css" />
+    
+    <div>
+      {% load static %}
+      <link href="../../static/index.css" rel="stylesheet" />
+      
+      
+      <div class="home-container">
+        <div class="home-navbar1">
+          <div class="navbar4-container">
+            <header data-thq="thq-navbar" class="navbar4-navbar-interactive">
+              <a href="{% url 'homepage' %}">
+              <img
+                alt="Arduino-like Boards and Modules"
+                src="..\..\static\logo.png"
+                class="navbar4-image1"
+                href="{% url 'homepage' %}"
+              /></a>
+              <div data-thq="thq-navbar-nav" class="navbar4-desktop-menu">
+                <nav class="navbar4-links">
+                  <span class="thq-link thq-body-small">
+                    <a href="{% url 'boards' %}">Boards</a>
+                  </span>
+                  <span class="thq-link thq-body-small">
+                    <a href="{% url 'manufacturers' %}">Manufacturers</a>
+                  </span>
+                  <span class="thq-link thq-body-small">
+                    <a href="{% url 'subtypes' %}">Subtypes</a>
+                  </span>
+                  <span class="thq-link thq-body-small">
+                    <a href="{% url '404_page' %}">Tutorials</a>
+                  </span>
+                  <span class="thq-link thq-body-small">
+                    <a href="{% url '404_page' %}">About</a>
+                  </span>
+                  
+                </nav>
+                <div class="navbar4-buttons_logs">
+                  <button class="thq-button-filled"><span>Search</span></button>
+                  {% if user.is_authenticated %}
+                  <button class="thq-button-filled">
+                  <span>
+                
+                <form id="logoutForm" method="POST" action="{% url 'logout' %}?next={{request.path}}">
+                  {% csrf_token %}
+              </form>
+            </span>
+              <a href="#" onclick="document.getElementById('logoutForm').submit();">Log out</a></button>
+                {% else %}
+                <button class="thq-button-filled">
+                <span>
+                    <a href="{% url 'register' %}?next={{request.path}}">Sign up</a>
+                  </span>
+                </button>
+                <button class="thq-button-filled">
+                  <span class="thq-link thq-body-small">
+                    <a href="{% url 'login' %}?next={{request.path}}">Log in</a>
+                  </span>
+                </button>
+                {% endif %}
+                </div>
+              </div>
+              <div data-thq="thq-burger-menu" class="navbar4-burger-menu">
+                <svg viewBox="0 0 1024 1024" class="navbar4-icon">
+                  <path
+                    d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
+                  ></path>
+                </svg>
+              </div>
+              <div data-thq="thq-mobile-menu" class="navbar4-mobile-menu">
+                <div class="navbar4-nav">
+                  <div class="navbar4-top">
+                    <img
+                      alt="Arduino-like Boards and Modules"
+                      src="https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/84ec08e8-34e9-42c7-9445-d2806d156403/fac575ac-7a41-484f-b7ac-875042de11f8?org_if_sml=1&amp;force_format=original"
+                      class="navbar4-logo"
+                    />
+                    <div data-thq="thq-close-menu" class="navbar4-close-menu">
+                      <svg viewBox="0 0 1024 1024" class="navbar4-icon2">
+                        <path
+                          d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <nav class="navbar4-links1">
+                    <span class="thq-link thq-body-small">
+                      <span>Boards</span>
+                    </span>
+                    <span class="thq-link thq-body-small">
+                      <span>Modules</span>
+                    </span>
+                    <span class="thq-link thq-body-small">
+                      <span>Compatibility</span>
+                    </span>
+                    <span class="thq-link thq-body-small">
+                      <span>Tutorials</span>
+                    </span>
+                    <span class="thq-link thq-body-small">
+                      <span>About</span>
+                    </span>
+                  </nav>
+                </div>
+
+              </div>
+            </header>
+          </div>
+        </div>
+        {% block content %}
+        {% endblock %}
+        
+                  <div class="footer15-media">
+                    <div class="footer15-container2">
+
+                      <div class="footer15-social-links">
+                        
+                          
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="footer15-credits">
+                <div class="footer15-row">
+                  <div class="footer15-credits1">
+                    <span class="thq-body-small">
+                      <span>https://www.example.com/privacy</span>
+                    </span>
+                    <span class="thq-body-small">
+                      <span>https://www.example.com/terms</span>
+                    </span>
+                    <span class="thq-body-small"><span></span></span>
+                  </div>
+                </div>
+                <span class="footer15-content3 thq-body-small">
+                  <span>© 2024 Dot.</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+    <script
+      defer=""
+      src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
+    ></script>
+  </body>
+
 </html>

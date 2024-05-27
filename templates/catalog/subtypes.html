@@ -1,15 +1,28 @@
 {% extends "base_generic.html" %}
-
 {% block content %}
+<style>
+  
+  a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: rgba(255, 0, 0, 0.541);
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  </style>
+{% load static %}
+  <link rel="stylesheet" href="../static/chasis.css" />
     <h1>Subtypes</h1>
 
     {% if subtypes_list %}
     <ul>
 
-      {% for stype in subtypes_list %}
-      <li>
-        <a href="{% url 'subtype'%}?id={{stype.id}}">{{ styoe.name }}</a> 
-      </li>
+      {% for subtype in subtypes_list %}
+        <a href="{% url 'subtype'%}?id={{subtype.id}}">{{ subtybe.name }}</a> 
       {% endfor %}
     </ul>
 

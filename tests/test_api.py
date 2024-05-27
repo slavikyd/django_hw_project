@@ -5,9 +5,14 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 
 from dot_app.models import Board, Manufacturer, Subtype
-from . import data
 URL = '/api/'
 
+BoardPOSTData = {'title': 'TestBoard'}
+ManufacturerPOSTData = {'title': 'TestManufacturer'}
+SubtypePOSTData = {'name': 'TestSubtype'}
+BoardURLTemplate='boards/'
+ManufacturerURLTemplate='manufacturers/'
+SubtypeURLTemplate='subtypes/'
 
 def api_test(model, url, creation_attributes):
     class TestForApi(TestCase):
@@ -52,6 +57,6 @@ def api_test(model, url, creation_attributes):
             )
     return TestForApi
 
-BoardApiTest = api_test(Board, f'{URL}{data.BoardURLTemplate}', data.BoardPOSTData)
-ManufacturerApiTest = api_test(Manufacturer, f'{URL}{data.ManufacturerURLTemplate}', data.ManufacturerPOSTData)
-SubtypeApiTest = api_test(Subtype, f'{URL}{data.SubtypeURLTemplate}', data.SubtypePOSTData)
+BoardApiTest = api_test(Board, f'{URL}{BoardURLTemplate}', BoardPOSTData)
+ManufacturerApiTest = api_test(Manufacturer, f'{URL}{ManufacturerURLTemplate}', ManufacturerPOSTData)
+SubtypeApiTest = api_test(Subtype, f'{URL}{SubtypeURLTemplate}', SubtypePOSTData)

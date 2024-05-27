@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<style>
+  
+    a:hover {
+      color: red;
+      background-color: transparent;
+      text-decoration: underline;
+    }
+    
+    a:active {
+      color: rgba(255, 0, 0, 0.541);
+      background-color: transparent;
+      text-decoration: underline;
+    }
+    </style>
+    <h4> You are going to add to bookmarks: {{ board.title }}</h4>
+    <h5> Funds available: {{ money }}</h5>
+        <form action="/bookmark/?id={{ board.id }}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="ADD">
+        </form>
+{% endblock %}

@@ -1,17 +1,32 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h1>Manufacturer: </h1>
+<style>
+  
+  a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: rgba(255, 0, 0, 0.541);
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  </style>
+  <div>
+    <h1>Manufacturers: </h1>
 
     {% if manufacturer %}
+  </div>
+    <div>
     <ul>
-
-      <li>
-        <a>{{ manufacturer.title }}</a>
-      </li>
+          <a>{{ manufacturer.title }}</a>
     </ul>
 
     {% else %}
       <p>Manufacturer not found..</p>
     {% endif %}
+  </div>
 {% endblock %}
