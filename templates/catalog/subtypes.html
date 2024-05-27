@@ -22,7 +22,7 @@
     <ul>
 
       {% for subtype in subtypes_list %}
-        <a href="{% url 'subtype'%}?id={{subtype.id}}">{{ subtybe.name }}</a> 
+        <li><a href="{% url 'subtype'%}?id={{subtype.id}}">{{ subtype.name }}</a></li>
       {% endfor %}
     </ul>
 
