@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import BasePermission
 from rest_framework.authentication import TokenAuthentication
@@ -31,12 +32,11 @@ def not_found_page(request):
     return render(request, '404.html')
 
 def create_list_view(model_class, plural_name, template):
-    class ModelListView(ListView):
+    class ModelListView(LoginRequiredMixin, ListView):
         model = model_class
         template_name = template
         paginate_by = 10
         context_object_name = plural_name
-
         def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
             context = super().get_context_data(**kwargs)
             obj = model_class.objects.all()

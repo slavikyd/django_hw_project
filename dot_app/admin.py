@@ -1,7 +1,7 @@
 from typing import Any
 from django.contrib import admin
 from django.db.models.query import QuerySet
-from .models import Board, Subtype, Manufacturer, BoardManufacturer, BoardSubtype, BoardBoard
+from .models import Board, Subtype, Manufacturer, BoardManufacturer, BoardSubtype, BoardBoard, Client
 from datetime import date
 from django.utils.translation import gettext_lazy as _
 
@@ -47,6 +47,12 @@ class BoardBoardInline(admin.TabularInline):
 class ManufacturerAdmin(admin.ModelAdmin):
     model = Manufacturer
     inlines = (BoardManufacturerInline,)
+
+@admin.register(Client)
+class ClientAdmin(admin.ModelAdmin):
+    model = Client
+
+
 
 @admin.register(Subtype)
 class SubtypeAdmin(admin.ModelAdmin):

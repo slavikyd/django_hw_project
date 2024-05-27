@@ -57,7 +57,7 @@ def create_redirect_page_test(page_name):
 auth_pages = (
     ('/boards/', 'boards', 'catalog/boards.html'),
     ('/manufacturers/', 'manufacturers', 'catalog/manufacturers.html'),
-    ('/subtype/', 'subtype', 'catalog/subtype.html'),
+    ('/subtypes/', 'subtypes', 'catalog/subtypes.html'),
     ('/board/', 'board', 'entities/board.html'),
     ('/manufacturer/', 'manufacturer', 'entities/manufacturer.html'),
     ('/subtype/', 'subtype', 'entities/subtype.html'),
