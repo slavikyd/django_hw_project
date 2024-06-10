@@ -1,4 +1,6 @@
+import datetime
 from django.db import models
+
 
 def create_manager(validators: tuple[tuple[str, callable]]):
     class Manager(models.Manager):
@@ -20,3 +22,11 @@ def create_save(validators: tuple[tuple[str, callable]]):
         return super(self.__class__, self).save(*args, **kwargs)
 
     return save
+
+def get_datetime():
+    """Getter of current datetime.
+
+    Returns:
+        current datetime
+    """
+    return datetime.datetime.now(datetime.timezone.utc)
