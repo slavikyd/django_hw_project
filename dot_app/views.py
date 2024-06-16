@@ -6,12 +6,11 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
 from django.views.generic import ListView
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import BasePermission
+from rest_framework import authentication, permissions
 from rest_framework.viewsets import ModelViewSet
 
 from .forms import Registration, TestForm
-from .models import Board, BoardBoard, Client, Manufacturer, Subtype
+from .models import Board, BoardBoard, Client, Manufacturer, Subtype, BoardSubtype, BoardManufacturer
 from .serializers import BoardSerializer, ManufacturerSerializer, SubtypeSerializer
 
 POST_STR = 'POST'
@@ -48,6 +47,18 @@ def not_found_page(request):
         render: error page
     """
     return render(request, '404.html')
+
+
+def about_page(request):
+    """Describe of project page view.
+
+    Args:
+        request (_type_): request from user
+
+    Returns:
+        render: about page
+    """
+    return render(request, 'pages/about.html')
 
 
 def create_list_view(model_class, plural_name, template):
@@ -96,15 +107,6 @@ def create_list_view(model_class, plural_name, template):
     return ModelListView
 
 
-Board_ListView = create_list_view(Board, BOARDS, 'catalog/boards.html')
-Manufacturer_ListView = create_list_view(
-    Manufacturer,
-    'manufacturers',
-    'catalog/manufacturers.html',
-)
-Subtype_ListView = create_list_view(Subtype, 'subtypes', 'catalog/subtypes.html')
-
-
 def create_view(model_class, context_name, template):
     """View assembler for single record of some model.
 
@@ -134,6 +136,12 @@ def create_view(model_class, context_name, template):
             context['client_bookmarked_board'] = target in client.boards.all()
             boards = BoardBoard.objects.filter(theboard__id=id_)
             context['compatible_boards'] = boards
+        elif model_class == Subtype:
+            boards = BoardSubtype.objects.filter(subtype__id=id_)
+            context['boards'] = boards
+        elif model_class == Manufacturer:
+            boards = BoardManufacturer.objects.filter(manufacturer__id=id_)
+            context['boards'] = boards
         return render(
             request,
             template,
@@ -191,7 +199,7 @@ def register(request):
     )
 
 
-class MyPermission(BasePermission):
+class MyPermission(permissions.BasePermission):
     """Custom BasePermission class.
 
     Args:
@@ -239,7 +247,7 @@ def create_viewset(model_class, serializer):
         serializer_class = serializer
         queryset = model_class.objects.all()
         permission_classes = [MyPermission]
-        authentication_classes = [TokenAuthentication]
+        authentication_classes = [authentication.TokenAuthentication]
 
     return CustomViewSet
 
@@ -338,6 +346,8 @@ def search_feature(request):
 Board_ListView = create_list_view(Board, BOARDS, 'catalog/boards.html')
 Subtype_ListView = create_list_view(Subtype, 'subtypes', 'catalog/subtypes.html')
 Manufacturer_ListView = create_list_view(Manufacturer, 'manufacturers', 'catalog/manufacturers.html')
+Tutorials_ListView = create_list_view(Subtype, 'subtypes', 'pages/tutorials.html')
+
 
 board_view = create_view(Board, 'board', 'entities/board.html')
 subtype_view = create_view(Subtype, 'subtype', 'entities/subtype.html')

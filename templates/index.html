@@ -1,59 +1,75 @@
 {% extends "base_generic.html" %}
-
+{% load i18n %}
 {% block content %}
+<style>
+  .gfg {
+      position: relative;
+      width: 100%;
+      text-align: center;
+  }
 
-  <div class="home-hero2">
+
+  .text-container {
+      position: absolute;
+      color: rgb(255, 255, 255);
+      left: 50%;
+      /* right: -100%; */
+      top: 50%; 
+      transform: translate(-50%, -50%);
+      background-color: rgba(41, 41, 41, 0.8);
+      padding: 0.5rem;
+      text-align: center;
+      font-size: 48px;
+  }
+</style>
+  <!-- <div class="home-hero2">
     <div class="hero3-header9">
-      
+
       <div class="hero3-content thq-section-padding">
         <div class="hero3-max-width thq-section-max-width thq-flex-row">
           <div class="hero3-column">
+            
+
             <h1 class="hero3-text thq-heading-1">
               <span>
-                Your one-stop library for Arduino-like boards and modules
+                {% trans "Your one-stop library for Arduino-like boards and modules" %}
               </span>
-            </h1>
+            </h1> 
           </div>
-          <img
-        alt="Image of various boards and modules"
-        src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?ixid=M3w5MTMyMXwwfDF8c2VhcmNofDh8fEFyZHVpbm98ZW58MHx8fHwxNzE2NjI4NTE1fDA&amp;ixlib=rb-4.0.3&amp;w=1500"
-        class="thq-img-ratio-16-9"
-      />
+          
           <div class="hero3-column1">
             <p class="hero3-text1 thq-body-large">
               <span>
-                Explore our comprehensive online resource for Arduino-like
-                boards and modules
               </span>
             </p>
-            <div class="hero3-actions">
-              <button class="thq-button-filled hero3-button">
-                <span class="hero3-text2 thq-body-small">
-                  <span>Learn More</span>
-                </span>
-              </button>
-              <button class="thq-button-outline hero3-button1">
-                <span class="hero3-text3 thq-body-small">
-                  <span>Get Started</span>
-                </span>
-              </button>
-            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+
+  </div> -->
+  <div class="gfg">
+    <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?ixid=M3w5MTMyMXwwfDF8c2VhcmNofDh8fEFyZHVpbm98ZW58MHx8fHwxNzE2NjI4NTE1fDA&amp;ixlib=rb-4.0.3&amp;w=1500"
+        style="width: 100%; height: 15%;" class="thq-img-ratio-16-9">
+    <div class="text-container">
+        <h1>{% trans "Your one-stop library for Arduino-like boards and modules" %}</h1>
+    </div>
+</div>
+  <!-- <img
+  alt="Image of various boards and modules"
+  src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?ixid=M3w5MTMyMXwwfDF8c2VhcmNofDh8fEFyZHVpbm98ZW58MHx8fHwxNzE2NjI4NTE1fDA&amp;ixlib=rb-4.0.3&amp;w=1500"
+  class="thq-img-ratio-16-9"
+/> -->
   <div class="home-gallery4">
     <div class="gallery1-gallery3 thq-section-padding">
       <div class="gallery1-max-width thq-section-max-width">
         <div class="gallery1-section-title">
           <h2 class="gallery1-text thq-heading-2">
-            <span>Popular Boards and Modules</span>
+            <span>{% trans "Popular Boards and Modules" %}</span>
           </h2>
           <span class="gallery1-text1 thq-body-large">
             <span>
-              Explore a variety of popular Arduino-like boards and modules
-              to kickstart your projects.
+              {% trans "Explore a variety of popular Arduino-like boards and modules to start your projects." %}
             </span>
           </span>
         </div>
@@ -61,14 +77,15 @@
           <div class="gallery1-container">
             <img
               alt="Arduino Uno board"
-              src="https://images.unsplash.com/photo-1472173148041-00294f0814a2?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcxNjYyODI2OXw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+              src="..\..\static\Arduino_banner.jpg"
               class="thq-img-ratio-4-3"
             />
           </div>
           <div class="gallery1-container1">
+
             <img
               alt="Raspberry Pi Zero W"
-              src="https://images.unsplash.com/photo-1621542864240-22e6fc265ef3?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcxNjYyODI3MHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080"
+              src="..\..\static\rpizero.jpg"
               class="thq-img-ratio-4-3"
             />
           </div>
@@ -84,7 +101,7 @@
     </div>
   </div>
   <div class="home-features5">
-    <h1>Main features</h1>
+    <h1>{% trans "Main features" %}</h1>
     <!-- <div class="features17-layout349 thq-section-padding"> -->
       <!-- <div class="features17-max-width thq-section-max-width">
         <div class="features17-image-container">
@@ -125,12 +142,12 @@
           <div class="features18-section-title">
             <div class="features18-content1">
               <h2 class="thq-heading-2">
-                <span>Component Compatibility</span>
+                <span>{% trans "Component Compatibility" %}</span>
               </h2>
               <p class="thq-body-large">
                 <span>
-                  Find detailed information on the compatibility of
-                  various Arduino-like boards and modules.
+                  {% trans "Find detailed information on the compatibility of
+                  various Arduino-like boards and modules." %}
                 </span>
               </p>
             </div>
@@ -153,12 +170,6 @@
       <div class="faq1-max-width thq-section-max-width">
         <div class="thq-flex-column">
           <h2 class="thq-heading-2"><span>FAQs</span></h2>
-          <p class="faq1-text1 thq-body-large">
-            <span>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse varius enim in eros elementum tristique.
-            </span>
-          </p>
         </div>
         <div class="thq-flex-column faq1-list">
           <div class="faq1-list-item1">
@@ -204,46 +215,15 @@
               </span>
             </span>
           </div>
-          <div class="faq1-list-item4">
-            <p class="faq1-faq4-question thq-body-large">
-              <span>
-                Where can I find resources for programming my Arduino-like
-                board?
-              </span>
-            </p>
-            <span class="thq-body-small">
-              <span>
-                You can explore online tutorials, official documentation,
-                and community forums dedicated to your specific board to
-                find resources for programming and troubleshooting.
-              </span>
-            </span>
-          </div>
-          <div class="faq1-list-item5">
-            <p class="faq1-faq5-question thq-body-large">
-              <span>
-                Are there any limitations to using Arduino-like boards
-                compared to official Arduino boards?
-              </span>
-            </p>
-            <span class="thq-body-small">
-              <span>
-                While Arduino-like boards offer similar functionalities,
-                there may be differences in terms of support, community
-                resources, and compatibility with official Arduino
-                accessories.
-              </span>
-            </span>
-          </div>
+  
         </div>
         <div class="thq-flex-column">
           <div class="faq1-content1">
             <h2 class="thq-heading-2">
-              <span>Still have a question?</span>
+              <span>Want to contact us?</span>
             </h2>
             <p class="faq1-text3 thq-body-large">
               <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </span>
             </p>
           </div>
@@ -261,14 +241,12 @@
       <div class="contact4-max-width thq-section-max-width">
         <div class="contact4-section-title">
           <span class="thq-body-small">
-            <span>Get in touch with us today!</span>
+            <span><p>Get in touch with us today!</p></span>
           </span>
           <div class="contact4-content">
-            <h2 class="thq-heading-2"><span>Contact us</span></h2>
+            <h2 class="thq-heading-2"  href="https://t.me/SlavikYD"><span>Contact us</span></h2>
             <p class="contact4-text2 thq-body-large">
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </span>
+
             </p>
           </div>
         </div>
@@ -284,8 +262,7 @@
                 <h3 class="contact4-text3 thq-heading-3">Email</h3>
                 <p class="contact4-text4 thq-body-large">
                   <span>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit. Suspendisse varius enim in ero.
+                    We are open to critics and suggestions :)
                   </span>
                 </p>
               </div>
@@ -328,29 +305,17 @@
         <div class="footer15-content">
           <div class="footer15-actions">
             <div class="footer15-newsletter">
-              <span class="thq-body-small">
-                <span>
-                  Explore our wide range of Arduino-like boards and
-                  modules
-                </span>
-              </span>
+
               <div class="footer15-actions1">
-                <div class="footer15-form">
-                  <div class="footer15-container1">
-                    <input
-                      type="email"
-                      placeholder="Enter your email"
-                      class="footer15-text-input thq-input"
-                    />
-                  </div>
-                  <button class="thq-button-outline footer15-button">
-                    <span class="thq-body-small">
-                      <span>Subscribe to our newsletter</span>
-                    </span>
-                  </button>
-                </div>
                 <span class="thq-body-small">
                   <span>Stay connected with us on social media</span>
+                  <a href="https://t.me/SlavikYD">
+                  <img
+                      alt="Arduino-like Boards and Modules"
+                      src="..\..\static\tgicon.png"
+                      style="height: 10%; width: 10%; margin-top: 10%; margin-left: auto; margin-right: auto;"
+                    />
+                </a>
                 </span>
               </div>
             </div>

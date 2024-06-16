@@ -1,0 +1,34 @@
+{% extends "base_generic.html" %}
+{% block content %}
+{% load i18n %}
+<h1>Dot.</h1>
+
+<div class="home-faq9">
+    <div class="faq1-faq7 thq-section-padding">
+      <div class="faq1-max-width">
+        <div class="thq-flex-column">
+          <h2 class="thq-heading-2">About us</h2>
+        </div>
+        <div class="thq-flex-column faq1-list">
+          <div class="faq1-list-item1">
+            <p class="faq1-faq1-question thq-body-large">
+            {% trans "What is Dot.?" %}
+            </p>
+            <span class="thq-body-small">
+              <span>
+                {% trans "We are a small project that aims to solve problem for begginers in elctronics DIY. Our main goal is to bring all of the most important info in one place on perfectly structured format." %}
+              </span>
+            </span>
+          </div>
+          <div class="faq1-list-item2">
+            <p class="faq1-faq1-question thq-body-large">
+            {% trans "Who is behind Dot.?" %}
+            </p>
+            <span class="thq-body-small">
+              <span>
+                {% trans "We will tell you a bit later :D" %}
+              </span>
+            </span>
+          </div>
+
+{% endblock %}

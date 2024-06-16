@@ -26,16 +26,25 @@
 
   <div>
     <ul>
-          <a>Title: {{ manufacturer.title }}</a>
+          <p style="font-size: 1.25pc;"><b>Title: </b>{{ manufacturer.title }}</p>
     </ul>
     {% if manufacturer.description == 'Nothing to look for here' %}
     <ul>
 
           <a>Description will appear here.</a>
   
-        </ul>
+    </ul>
     {% else %}
     <p>Description: {{ manufacturer.description }}</p>
     {% endif %}
+
+    <h3 style="margin-top: 2.5%; margin-bottom: 0.5%;">Boards of this manufacturer: </h3>
+    <ul>
+      {% for board in boards %}
+      <ul>
+      <a href="{% url 'board' %}?id={{board.board.id}}">{{ board.board.title }}</a>
+    </ul>
+    {% endfor %}
+    </ul>
   </div>
 {% endblock %}

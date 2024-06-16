@@ -55,22 +55,14 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ],
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAdminUser',
-   ),
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
 }
 
 SWAGGER_SETTINGS = {
-   'SECURITY_DEFINITIONS': {
-      'Basic': {
-            'type': 'basic'
-      },
-      'Token': {
-            'type': 'apiKey',
-            'name': 'Authorization',
-            'in': 'header'
-      }
-   }
+    'SECURITY_DEFINITIONS': {
+        'Basic': {'type': 'basic'},
+        'Token': {'type': 'apiKey', 'name': 'Authorization', 'in': 'header'},
+    },
 }
 
 MIDDLEWARE = [
@@ -124,7 +116,6 @@ DATABASES = {
 }
 
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -163,7 +154,7 @@ LOCALE_PATH = '/dot_app/locale'
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS=(path.join(BASE_DIR,'templates/static'), )
+STATICFILES_DIRS = (path.join(BASE_DIR, 'templates/static'),)
 STATIC_ROOT = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -183,7 +174,10 @@ MINIO_SECRET_KEY = getenv('MINIO_SECRET_ACCESS_KEY')
 MINIO_USE_HTTPS = False
 MINIO_CONSISTENCY_CHECK_ON_START = True
 truths = ('True', 'true', '1')
-MINIO_CONSISTENCY_CHECK_ON_START = getenv('MINIO_CONSISTENCY_CHECK_ON_START', False) in truths
+TURN_OFF = False
+MINIO_CONSISTENCY_CHECK_ON_START = (
+    getenv('MINIO_CONSISTENCY_CHECK_ON_START', TURN_OFF) in truths
+)
 MINIO_PRIVATE_BUCKETS = []
 MINIO_PUBLIC_BUCKETS = [
     'static',

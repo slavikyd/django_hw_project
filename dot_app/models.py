@@ -56,6 +56,7 @@ class Subtype(UUIDMixin, CreatedMixin, ModifiedMixin):
 
     name = models.TextField(null=False, blank=False)
     description = models.TextField(null=True, blank=True)
+    video_link = models.TextField(null=True, blank=True)
 
     def __str__(self) -> str:
         """Representation of string method for class.

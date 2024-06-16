@@ -91,19 +91,30 @@
                     <a href="{% url 'subtypes' %}">Subtypes</a>
                   </span>
                   <span class="thq-link thq-body-small">
-                    <a href="{% url '404_page' %}">Tutorials</a>
+                    <a href="{% url 'tutorials' %}">Tutorials</a>
                   </span>
                   <span class="thq-link thq-body-small">
-                    <a href="{% url '404_page' %}">About</a>
+                    <a href="{% url 'about' %}">About</a>
                   </span>
-                  
+                  <span style="margin-right: 5px;">
+                    <a href="{% url 'search' %}">
+                      <img
+                        alt="Arduino-like Boards and Modules"
+                        src="..\..\static\search.png"
+                        href="{% url 'search' %}"
+                        style="height: 10%; width: 10%;"
+                      /></a>
+                    </span>
                 </nav>
+                
                 <div class="navbar4-buttons_logs">
-                  <button class="thq-link thq-body-small"><span><a href="{% url 'search' %}">Search</a></span></button>
+                  <!-- <button class="thq-link thq-body-small"><span><a href="{% url 'search' %}">Search</a></span></button> -->
+                  
                   <button class="thq-link thq-body-small">
                   <span>
                     <a href="{% url 'profile' %}">Profile</a>
-                  </span></button>
+                  </span></button> 
+                  
                   {% if user.is_authenticated %}
                   <button class="thq-link thq-body-small">
                   <span>
@@ -137,11 +148,14 @@
               <div data-thq="thq-mobile-menu" class="navbar4-mobile-menu">
                 <div class="navbar4-nav">
                   <div class="navbar4-top">
+                    <a href="{% url 'homepage' %}">
                     <img
                       alt="Arduino-like Boards and Modules"
                       src="..\..\static\logo.png"
                       class="navbar4-logo"
+                      
                     />
+                  </a>
                     <div data-thq="thq-close-menu" class="navbar4-close-menu">
                       <svg viewBox="0 0 1024 1024" class="navbar4-icon2">
                         <path
@@ -151,7 +165,7 @@
                     </div>
                   </div>
                   <nav class="navbar4-links1">
-                    <span class="thq-link thq-body-small">
+                    <!-- <span class="thq-link thq-body-small">
                       <span>Boards</span>
                     </span>
                     <span class="thq-link thq-body-small">
@@ -165,7 +179,24 @@
                     </span>
                     <span class="thq-link thq-body-small">
                       <span>About</span>
+                    </span> -->
+                    <span class="thq-link thq-body-small">
+                      <a href="{% url 'boards' %}">Boards</a>
                     </span>
+                    <span class="thq-link thq-body-small">
+                      <a href="{% url 'manufacturers' %}">Manufacturers</a>
+                    </span>
+                    <span class="thq-link thq-body-small">
+                      <a href="{% url 'subtypes' %}">Subtypes</a>
+                    </span>
+                    <span class="thq-link thq-body-small">
+                      <a href="{% url 'tutorials' %}">Tutorials</a>
+                    </span>
+                    <span class="thq-link thq-body-small">
+                      <a href="{% url 'about' %}">About</a>
+                    </span>
+                    <span class="thq-link thq-body-small"><span><a href="{% url 'search' %}">Search</a></span>
+
                   </nav>
                 </div>
 

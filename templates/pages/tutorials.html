@@ -1,0 +1,36 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<style>
+  
+  a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: rgba(255, 0, 0, 0.541);
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  </style>
+{% load static %}
+  <link rel="stylesheet" href="../static/chasis.css" />
+    <h1 style="margin-bottom: 2.5%;">Subtypes</h1>
+
+    {% if subtypes_list %}
+    <ul>
+
+      {% for subtype in subtypes_list %}
+        {% if subtype.video_link %}
+      <li>
+      <p style="margin-top: auto; margin-bottom: 2.5%;">Tutorial: </p><iframe src="{{ subtype.video_link }}" width="560" height="315" frameborder="0" allowfullscreen style="margin-bottom: 2.5%;"></iframe><br> <a href="{% url 'subtype'%}?id={{subtype.id}}" style="margin-top: 2.5%;">{{ subtype.name }}</a>
+        </li>
+    {% endif %}
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>There are no subtypes for now..</p>
+    {% endif %}
+{% endblock %}
