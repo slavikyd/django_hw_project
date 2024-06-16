@@ -1,26 +1,26 @@
-from django.urls import path
-from . import views
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import BoardViewSet, SubtypeViewSet, ManufacturerViewSet
-from rest_framework import permissions
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
+"""Urls routing module for django project."""
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.urls import include, path
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
+from rest_framework.routers import DefaultRouter
+
+from . import views
 
 router = DefaultRouter()
-router.register(r'boards', BoardViewSet)
-router.register(r'subtypes', SubtypeViewSet)
-router.register(r'manufacturers', ManufacturerViewSet)
+router.register('boards', views.BoardViewSet)
+router.register('subtypes', views.SubtypeViewSet)
+router.register('manufacturers', views.ManufacturerViewSet)
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="Snippets API",
+      title='Snippets API',
       default_version='v0.1',
-      description="Empty now",
-      terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="a@a.com"),
-      license=openapi.License(name="BSD License"),
+      description='Empty now',
+      terms_of_service='https://www.google.com/policies/terms/',
+      contact=openapi.Contact(email='slavikyd@gmail.com'),
+      license=openapi.License(name='BSD License'),
    ),
    public=True,
    permission_classes=(permissions.AllowAny,),
@@ -43,6 +43,8 @@ urlpatterns = [
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('404/', views.not_found_page, name='404_page'),
-    path('profile/', views.profile, name='profile')
+    path('profile/', views.profile, name='profile'),
+    path('bookmark/', views.bookmark, name='bookmark'),
+    path('search/', views.search_feature, name='search'),
 ]
 urlpatterns += staticfiles_urlpatterns()

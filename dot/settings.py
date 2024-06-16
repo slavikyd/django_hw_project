@@ -154,6 +154,8 @@ TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
 
 USE_TZ = True
+USE_L10N = True
+LOCALE_PATH = '/dot_app/locale'
 
 
 # Static files (CSS, JavaScript, Images)

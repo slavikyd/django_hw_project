@@ -1,7 +1,11 @@
+"""Mixins for django.orm models."""
 from uuid import uuid4
+
 from django.db import models
+
 from .models_funcs import get_datetime
 from .models_validators import check_created, check_modified
+
 
 class UUIDMixin(models.Model):
     """Mixin class for uuid field.
@@ -56,4 +60,3 @@ class ModifiedMixin(models.Model):
         """Meta settings class."""
 
         abstract = True
-

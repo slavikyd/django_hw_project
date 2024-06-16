@@ -1,0 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-16 00:23+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\admin.py:20
+msgid "recency"
+msgstr "Давность"
+
+#: .\admin.py:37
+msgid "Released in last 5 years"
+msgstr "Выпущено в последние 5 лет"
+
+#: .\admin.py:38
+msgid "Created in the last 10 years"
+msgstr "Выпущено в последние 10 лет"
+
+#: .\admin.py:39
+msgid "Created in the last 15 years"
+msgstr "Выпущено в последние 15 лет"
+
+#: .\models.py:131
+msgid "USB with UART support"
+msgstr "USB с протоколом UART"
+
+#: .\models.py:132
+msgid "USB with COM support"
+msgstr "USB с протоколом COM"
+
+#: .\models.py:133
+msgid "plain USB"
+msgstr "обычный USB"
+
+#: .\models.py:134
+msgid "USB-C to USB-A connection"
+msgstr "USB-C на USB-A"
+
+#: .\models.py:135
+msgid "Micro USB to USB-A connection"
+msgstr "Микро USB на USB-A"
+
+#: .\models.py:274
+msgid "relationship board client"
+msgstr "Связь плата клиент"
+
+#: .\models.py:275
+msgid "relationships boards client"
+msgstr "Связи платы клиенты"
+
+#: .\..\templates\board.html: 44
+msgid "Compatible to this board: "
+msgstr "Совместимы с этой платой: "
+
+#: .\..\templates\board.html: 21
+msgid "Board: "
+msgstr "Плата: "
+
+#: .\..\templates\board.html: 28
+msgid "Description: "
+msgstr "Описание: "
+
+#: .\..\templates\board.html: 29
+msgid "Release year: "
+msgstr "Год выпуска: "
+
+#: .\..\templates\board.html: 32
+msgid "You already bookmarked this one!"
+msgstr "Уже в закладках!"
+
+#: .\..\templates\board.html: 34
+msgid "You have not liked this one yet!"
+msgstr "Еще не в закладках!"
+
+#: .\..\templates\board.html: 35
+msgid "You can add it to"
+msgstr "Можно добавть в"
+
+#: .\..\templates\board.html: 35
+msgid "bookmarks"
+msgstr "закладки"
+
+#: .\..\templates\board.html: 49
+msgid "Connects via: "
+msgstr "Подключение через: "
+
+#: .\..\templates\board.html: 55
+msgid "Board not found..."
+msgstr "Плата не найдена..."
+

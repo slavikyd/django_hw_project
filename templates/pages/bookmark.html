@@ -15,7 +15,6 @@
     }
     </style>
     <h4> You are going to add to bookmarks: {{ board.title }}</h4>
-    <h5> Funds available: {{ money }}</h5>
         <form action="/bookmark/?id={{ board.id }}" method="POST">
             {% csrf_token %}
             <input type="submit" value="ADD">

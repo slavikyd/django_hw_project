@@ -19,9 +19,13 @@
 
     {% if subtype %}
     <ul>
-
       <li>
-        <a>{{ subtype.name }}</a> ({{subtype.description}})
+        <p>{{ subtype.name }}</p>
+        {% if subtype.description == 'Nothing to look for here' %}
+        <p>No description currently :(</p>
+        {% else %}
+        <p>Description: {{ subtype.description }}</p>
+        {% endif %}
       </li>
     </ul>
 

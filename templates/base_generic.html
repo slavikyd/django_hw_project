@@ -99,9 +99,13 @@
                   
                 </nav>
                 <div class="navbar4-buttons_logs">
-                  <button class="thq-button-filled"><span>Search</span></button>
+                  <button class="thq-link thq-body-small"><span><a href="{% url 'search' %}">Search</a></span></button>
+                  <button class="thq-link thq-body-small">
+                  <span>
+                    <a href="{% url 'profile' %}">Profile</a>
+                  </span></button>
                   {% if user.is_authenticated %}
-                  <button class="thq-button-filled">
+                  <button class="thq-link thq-body-small">
                   <span>
                 
                 <form id="logoutForm" method="POST" action="{% url 'logout' %}?next={{request.path}}">
@@ -110,12 +114,12 @@
             </span>
               <a href="#" onclick="document.getElementById('logoutForm').submit();">Log out</a></button>
                 {% else %}
-                <button class="thq-button-filled">
+                <button class="thq-link thq-body-small">
                 <span>
                     <a href="{% url 'register' %}?next={{request.path}}">Sign up</a>
                   </span>
                 </button>
-                <button class="thq-button-filled">
+                <button class="thq-link thq-body-small">
                   <span class="thq-link thq-body-small">
                     <a href="{% url 'login' %}?next={{request.path}}">Log in</a>
                   </span>
@@ -135,7 +139,7 @@
                   <div class="navbar4-top">
                     <img
                       alt="Arduino-like Boards and Modules"
-                      src="https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/84ec08e8-34e9-42c7-9445-d2806d156403/fac575ac-7a41-484f-b7ac-875042de11f8?org_if_sml=1&amp;force_format=original"
+                      src="..\..\static\logo.png"
                       class="navbar4-logo"
                     />
                     <div data-thq="thq-close-menu" class="navbar4-close-menu">
@@ -188,10 +192,10 @@
                 <div class="footer15-row">
                   <div class="footer15-credits1">
                     <span class="thq-body-small">
-                      <span>https://www.example.com/privacy</span>
+                      <span>SlavikYD</span>
                     </span>
                     <span class="thq-body-small">
-                      <span>https://www.example.com/terms</span>
+                      <span>slavikyd@gmail.com</span>
                     </span>
                     <span class="thq-body-small"><span></span></span>
                   </div>

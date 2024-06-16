@@ -20,13 +20,22 @@
 
     {% if manufacturer %}
   </div>
-    <div>
-    <ul>
-          <a>{{ manufacturer.title }}</a>
-    </ul>
+  {% else %}
+  <p>Manufacturer not found..</p>
+  {% endif %}
 
+  <div>
+    <ul>
+          <a>Title: {{ manufacturer.title }}</a>
+    </ul>
+    {% if manufacturer.description == 'Nothing to look for here' %}
+    <ul>
+
+          <a>Description will appear here.</a>
+  
+        </ul>
     {% else %}
-      <p>Manufacturer not found..</p>
+    <p>Description: {{ manufacturer.description }}</p>
     {% endif %}
   </div>
 {% endblock %}

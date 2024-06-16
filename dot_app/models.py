@@ -3,6 +3,7 @@ import datetime
 
 from django.conf.global_settings import AUTH_USER_MODEL
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 # from django_currentuser.middleware import (
 # get_current_user, get_current_authenticated_user)
 from django_minio_backend import MinioBackend, iso_date_prefix
@@ -25,7 +26,7 @@ class Manufacturer(UUIDMixin, CreatedMixin, ModifiedMixin):
     """
 
     title = models.TextField(null=False, blank=False)
-
+    description = models.TextField(null=True, blank=False, default='Nothing to look for here')
     boards = models.ManyToManyField('Board', through='BoardManufacturer')
 
     def __str__(self) -> str:
@@ -95,7 +96,7 @@ class Board(UUIDMixin, CreatedMixin, ModifiedMixin):
         storage=MinioBackend(bucket_name='static'),
         upload_to=iso_date_prefix,
     )
-    image = models.FileField(
+    image = models.ImageField(
         null=True, blank=True,
         storage=MinioBackend(bucket_name='static'),
         upload_to=iso_date_prefix,
@@ -127,11 +128,11 @@ class BoardBoard(UUIDMixin, CreatedMixin):
     """
 
     connection_choices = (
-        (choices.UU, 'USB with UART support'),
-        (choices.UC, 'USB with COM support'),
-        (choices.U, 'plain USB'),
-        (choices.U_C_U_A, 'USB-C to USB-A connection'),
-        (choices.U_MC_U_A, 'Micro USB to USB-A connection'),
+        (choices.UU, _('USB with UART support')),
+        (choices.UC, _('USB with COM support')),
+        (choices.UP, _('plain USB')),
+        (choices.U_C_U_A, _('USB-C to USB-A connection')),
+        (choices.U_MC_U_A, _('Micro USB to USB-A connection')),
     )
     theboard = models.ForeignKey(Board, on_delete=models.CASCADE)
     compatibleboard = models.ForeignKey(
@@ -270,5 +271,5 @@ class BoardClient(UUIDMixin, CreatedMixin):
         """Subclass for settings."""
 
         db_table = '"databank"."board_client"'
-        verbose_name = ('relationship board client')
-        verbose_name_plural = ('relationships boards client')
+        verbose_name = _('relationship board client')
+        verbose_name_plural = _('relationships boards client')

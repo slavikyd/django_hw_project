@@ -1,0 +1,52 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+<style>
+  
+    a:hover {
+      color: red;
+      background-color: transparent;
+      text-decoration: underline;
+    }
+    
+    a:active {
+      color: rgba(255, 0, 0, 0.541);
+      background-color: transparent;
+      text-decoration: underline;
+    }
+    </style>
+<form class="d-flex" role="search" method="POST">
+    {% csrf_token %}
+    <input
+       class="form-control me-2"
+       type="search"
+       placeholder="Search"
+       name="search_query"
+       required aria-label="Search"
+    >
+    <button class="btn btn-outline-success" type="submit">Search</button>
+   </form>
+   {% if query %}
+   <div>
+       <div>
+       <!-- check if there is a result in the database-->
+       {% if posts %}
+           <!-- loop through search query if there is a result -->
+           {% for post in posts %}
+               <div>
+                <ul>
+                   <!-- return search query -->
+                   <a href="{% url 'board'%}?id={{post.id}}">{{post.title}}</a>
+                </ul>
+                </div>
+           {% endfor %}
+           <!-- return a message if there are no results found. -->
+       {% else %}
+           <h3>No search results found</h3>
+       {% endif %}
+       </div>
+   </div>
+{% else %}
+   <h1>Please enter a search query</h1>
+{% endif %}
+{% endblock %}

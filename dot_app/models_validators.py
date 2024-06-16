@@ -1,6 +1,11 @@
+"""Validators for django.orm models."""
 import datetime
+
 from django.core.exceptions import ValidationError
+
 from .models_funcs import get_datetime
+
+
 def check_created(time_created: datetime.datetime):
     """Model validator of timestamp for model.
 
@@ -31,6 +36,7 @@ def check_modified(time_modified: datetime.datetime):
             ('Date and time is bigger than current!'),
             params={'modified': time_modified},
         )
+
 
 def check_year(year: int):
     """Model validator for valid year set in model.
