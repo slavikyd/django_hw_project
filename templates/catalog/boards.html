@@ -24,7 +24,7 @@
 
       {% for board in boards_list %}
       <li>
-        <a href="{% url 'board'%}?id={{board.id}}" style="margin-bottom: 2.5%;">{{ board.title }}</a> {{board.type}} {{board.year}} {{board.subtypes}}
+        <a href="{% url 'board'%}?id={{board.id}}" style="margin-bottom: 2.5%;">{{ board.title }}</a> {{board.type}} {{board.year}} {% if board.subtype %} {{board.subtypes}} {% endif %}
       </li>
       {% endfor %}
     </ul>
