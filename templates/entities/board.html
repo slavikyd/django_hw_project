@@ -35,13 +35,18 @@
       {% trans "You can add it to" %} <a href="{% url 'bookmark' %}?id={{board.id}}">{% trans "bookmarks" %}</a>
   {% endif %}
         <br>
+        {% if board.image %}
         <img src="http://localhost:9000/static/{{board.image}}" width=25% height=25%>
+        {% endif %}
+        {% if board.datasheet %}
         <div style="margin-bottom: 5%;">
           <embed src="http://localhost:9000/static/{{board.datasheet}}" width=85% height="700px"/>
         </div>
+        {% endif %}
     </ul><ul>
       <br>
       <h2>{% trans "Compatible to this board: "%}</h2>
+      {% if compatible_boards %}
       <br>
       {% for boardd in compatible_boards %}
       <ul>
@@ -49,6 +54,9 @@
       <p> {% trans "Connects via: "%}{{ boardd.connections }} </p>
     </ul>
     {% endfor %}
+    {% else %}
+    <h2>No compatible boards found :(</h2>
+    {% endif %}
       <br>
       
 {% else %}

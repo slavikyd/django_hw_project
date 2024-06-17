@@ -55,7 +55,7 @@ class Subtype(UUIDMixin, CreatedMixin, ModifiedMixin):
     """
 
     name = models.TextField(null=False, blank=False)
-    description = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True, default='None provided.')
     video_link = models.TextField(null=True, blank=True)
 
     def __str__(self) -> str:
@@ -111,7 +111,7 @@ class Board(UUIDMixin, CreatedMixin, ModifiedMixin):
         Returns:
             str: _description_
         """
-        return f'{self.title}, {self.year}, {self.type} pages'
+        return f'{self.title}, {self.year}, {self.type}'
 
     class Meta:
         """Meta settings class."""

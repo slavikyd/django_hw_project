@@ -101,7 +101,7 @@ class TestLinks(TestCase):
         subtype = models.Subtype.objects.create(**self.valid_attrs.get(SUBTYPE))
         board_attrs = self.valid_attrs[BOARD]
         b_title, b_year = board_attrs[TITLE], board_attrs['year']
-        board_str = f'{b_title}, {b_year}, Undefined pages'
+        board_str = f'{b_title}, {b_year}, Undefined'
         self.assertEqual(f'{board}', board_str)
         self.assertEqual(f'{manufacturer}', self.valid_attrs[MANUF][TITLE])
         self.assertEqual(f'{subtype}', self.valid_attrs[SUBTYPE]['name'])

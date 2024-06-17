@@ -17,14 +17,14 @@
   </style>
 {% load static %}
   <link rel="stylesheet" href="../static/chasis.css" />
-    <h1>Boards</h1>
+    <h1 style="margin-bottom: 0.5%;">Boards</h1>
 
     {% if boards_list %}
     <ul>
 
       {% for board in boards_list %}
       <li>
-        <a href="{% url 'board'%}?id={{board.id}}">{{ board.title }}</a> {{board.type}} {{board.year}} {{board.subtypes}}
+        <a href="{% url 'board'%}?id={{board.id}}" style="margin-bottom: 2.5%;">{{ board.title }}</a> {{board.type}} {{board.year}} {{board.subtypes}}
       </li>
       {% endfor %}
     </ul>

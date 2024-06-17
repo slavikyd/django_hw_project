@@ -104,3 +104,10 @@ msgstr "Подключение через: "
 msgid "Board not found..."
 msgstr "Плата не найдена..."
 
+#: .\..\index.html: 55
+msgid "Your one-stop library for Arduino-like boards and modules"
+msgstr "Большая библиотека Ардуино-подобных плат и модулей"
+
+#: .\..\index.html: 68
+msgid "Popular Boards and Modules"
+msgstr "Популярные платы и модули"

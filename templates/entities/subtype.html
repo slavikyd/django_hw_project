@@ -29,6 +29,7 @@
       </li>
     </ul>
     <h2 style="margin-top: 2.5%; margin-bottom: 0.5%;">Boards of this subtype: </h2>
+    {% if boards %}
     <ul>
       {% for board in boards %}
       <ul>
@@ -36,6 +37,9 @@
     </ul>
     {% endfor %}
     </ul>
+    {% else %}
+    <h3>No boards of this subtype currently.</h3>
+    {% endif %}
     {% else %}
       <p>Subtype not found..</p>
     {% endif %}
